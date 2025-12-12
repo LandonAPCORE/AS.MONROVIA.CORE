@@ -1,0 +1,246 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Aperture Science Innovations — Monrovia Division</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* Aperture Science Branding */
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f4f4f4;
+      color: #222;
+    }
+    header {
+      background: #0e3c4e;
+      color: white;
+      padding: 1em;
+      text-align: center;
+    }
+    nav {
+      background: #1b5e72;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    nav button {
+      background: #1b5e72;
+      color: white;
+      border: none;
+      padding: 0.8em 1.2em;
+      cursor: pointer;
+      font-size: 1em;
+    }
+    nav button:hover {
+      background: #2c7f99;
+    }
+    section {
+      display: none;
+      padding: 2em;
+    }
+    section.active {
+      display: block;
+    }
+    .printable {
+      border: 1px solid #ccc;
+      padding: 1em;
+      background: white;
+      margin-top: 1em;
+    }
+    .form-group {
+      margin-bottom: 1em;
+    }
+    label {
+      display: block;
+      font-weight: bold;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 0.5em;
+      margin-top: 0.2em;
+    }
+    .btn {
+      background: #ff7f00;
+      color: white;
+      border: none;
+      padding: 0.6em 1em;
+      cursor: pointer;
+      font-size: 1em;
+    }
+    .btn:hover {
+      background: #e66f00;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Aperture Science Innovations</h1>
+    <p>Monrovia Division</p>
+  </header>
+  <nav id="nav">
+    <button onclick="showSection('home')">Home</button>
+    <button onclick="showSection('about')">About</button>
+    <button onclick="showSection('ai')">AI Core</button>
+    <button onclick="showSection('employees')">Employees</button>
+    <button onclick="showSection('research')">Research</button>
+    <button onclick="showSection('careers')">Careers</button>
+    <button onclick="showSection('admin')">Admin</button>
+    <button onclick="showSection('contact')">Contact</button>
+    <button onclick="showSection('settings')">Settings</button>
+    <button onclick="showSection('faq')">FAQ</button>
+    <button onclick="showSection('news')">News</button>
+  </nav>
+
+  <section id="home" class="active">
+    <h2>Welcome to Aperture Science Innovations</h2>
+    <p>Explore our divisions, research, and opportunities.</p>
+  </section>
+
+  <section id="about">
+    <h2>About</h2>
+    <p>The Monrovia Division of Aperture Science is dedicated to advancing human testing, AI development, and interdimensional research.</p>
+  </section>
+
+  <section id="ai">
+    <h2>AI Core — service_droid.CORE</h2>
+    <textarea id="aiInput" rows="4" placeholder="Ask the AI something..."></textarea>
+    <button class="btn" onclick="askAI()">Submit</button>
+    <div id="aiOutput" class="printable"></div>
+  </section>
+
+  <section id="employees">
+    <h2>Employee Directory</h2>
+    <div class="form-group">
+      <input id="empName" placeholder="Name">
+      <input id="empRole" placeholder="Role">
+      <button class="btn" onclick="addEmployee()">Add</button>
+    </div>
+    <table id="empTable" border="1" cellpadding="5">
+      <thead><tr><th>Name</th><th>Role</th><th>Actions</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </section>
+
+  <section id="research">
+    <h2>Research Projects</h2>
+    <div class="form-group">
+      <input id="projTitle" placeholder="Project Title">
+      <input id="projTag" placeholder="Tags">
+      <input id="projStatus" placeholder="Status">
+      <input id="projKPI" placeholder="KPI">
+      <button class="btn" onclick="addProject()">Add Project</button>
+    </div>
+    <table id="projTable" border="1" cellpadding="5">
+      <thead><tr><th>Title</th><th>Tags</th><th>Status</th><th>KPI</th><th>Actions</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </section>
+
+  <section id="careers">
+    <h2>Careers</h2>
+    <div class="form-group">
+      <input id="applicantName" placeholder="Your Name">
+      <input id="applicantRole" placeholder="Position">
+      <textarea id="applicantNote" placeholder="Why should we hire you?"></textarea>
+      <button class="btn" onclick="submitApplication()">Submit Application</button>
+    </div>
+    <div id="applicationReceipt" class="printable"></div>
+  </section>
+
+  <section id="admin">
+    <h2>Admin Panel</h2>
+    <input type="password" id="adminPin" placeholder="Enter PIN">
+    <button class="btn" onclick="unlockAdmin()">Unlock</button>
+    <div id="adminPanel" style="display:none;">
+      <p>Audit Log:</p>
+      <textarea rows="6" style="width:100%;">[Audit log will appear here]</textarea>
+      <button class="btn" onclick="alert('Data purged')">Purge Data</button>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <input id="contactName" placeholder="Your Name">
+    <input id="contactMsg" placeholder="Message">
+    <button class="btn" onclick="submitContact()">Send</button>
+    <div id="inbox" class="printable"></div>
+  </section>
+
+  <section id="settings">
+    <h2>Settings</h2>
+    <label>Theme: <select><option>Light</option><option>Dark</option></select></label>
+    <label>Font Size: <input type="range" min="12" max="24" value="16"></label>
+    <label>Accent Color: <input type="color" value="#00bcd4"></label>
+    <label>Language: <select><option>English</option><option>French</option></select></label>
+    <label>Feature Flags: <input type="checkbox"> Enable Experimental Features</label>
+  </section>
+
+  <section id="faq">
+    <h2>FAQ</h2>
+    <p><strong>Q:</strong> Is this site safe for human testing?<br><strong>A:</strong> Mostly.</p>
+  </section>
+
+  <section id="news">
+    <h2>News & Release Notes</h2>
+    <p>v1.0 — Monrovia Division site launched. Includes AI Core, Careers, Research, and Admin tools.</p>
+  </section>
+
+  <script>
+    function showSection(id) {
+      document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+    }
+
+    function askAI() {
+      const input = document.getElementById('aiInput').value;
+      const output = document.getElementById('aiOutput');
+      output.innerText = 'service_droid.CORE: Processing input...\n' + input;
+    }
+
+    function addEmployee() {
+      const name = document.getElementById('empName').value;
+      const role = document.getElementById('empRole').value;
+      const row = document.createElement('tr');
+      row.innerHTML = `<td>${name}</td><td>${role}</td><td><button onclick="this.parentElement.parentElement.remove()">Delete</button></td>`;
+      document.querySelector('#empTable tbody').appendChild(row);
+    }
+
+    function addProject() {
+      const title = document.getElementById('projTitle').value;
+      const tag = document.getElementById('projTag').value;
+      const status = document.getElementById('projStatus').value;
+      const kpi = document.getElementById('projKPI').value;
+      const row = document.createElement('tr');
+      row.innerHTML = `<td>${title}</td><td>${tag}</td><td>${status}</td><td>${kpi}</td><td><button onclick="this.parentElement.parentElement.remove()">Delete</button></td>`;
+      document.querySelector('#projTable tbody').appendChild(row);
+    }
+
+    function submitApplication() {
+      const name = document.getElementById('applicantName').value;
+      const role = document.getElementById('applicantRole').value;
+      const note = document.getElementById('applicantNote').value;
+      const receipt = document.getElementById('applicationReceipt');
+      receipt.innerHTML = `<h3>Application Receipt</h3><p>Name: ${name}<br>Role: ${role}<br>Note: ${note}</p>`;
+      window.print();
+    }
+
+    function unlockAdmin() {
+      const pin = document.getElementById('adminPin').value;
+      if (pin === '1234') {
+        document.getElementById('adminPanel').style.display = 'block';
+      } else {
+        alert('Incorrect PIN');
+      }
+    }
+
+    function submitContact() {
+      const name = document.getElementById('contactName').value;
+      const msg = document.getElementById('contactMsg').value;
+      const inbox = document.getElementById('inbox');
+      inbox.innerHTML += `<p><strong>${name}:</strong> ${msg}</p>`;
+    }
+  </script>
+</body>
+</html>
